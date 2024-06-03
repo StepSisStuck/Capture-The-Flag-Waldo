@@ -1,0 +1,4 @@
+name = "Finding Waldo"
+category = "Cryptography"
+description = "Decrypt the message to find Waldo’s location."
+points = 100
