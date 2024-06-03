@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template_string
+from flask import Flask, jsonify, request, render_template_string, make_response
 from Crypto.Cipher import AES
 import base64
 import logging
@@ -37,6 +37,19 @@ def message():
         "encrypted_message": "G30tMv+ThtFNhuitft+HAuS8kJaZTs3brXfv6a6dQY063vnONWRR6w59W7TjP9Ua"
     })
 
+
+@app.route('/key')
+def index():
+  admin_cookie = request.cookies.get('WaldoesCookie')
+  if admin_cookie == 'true':
+    return 'thisisaveryshhhh'
+  elif admin_cookie is None:
+    resp = make_response("Sorry, only users with WaldoesCookie cookie can access this page.")
+    resp.set_cookie('WaldoesCookie', 'false')
+    return resp
+  else:
+    return 'Sorry, only users with WaldoesCookie can access this page.'
+
 @app.route('/decrypt', methods=['GET', 'POST'])
 def decrypt_page():
     encrypted_message = ''
@@ -53,7 +66,7 @@ def decrypt_page():
             if len(key) not in [16, 24, 32]:
                 raise ValueError("Invalid AES key length (must be 16, 24, or 32 bytes)")
             decrypted_message = decrypt(encrypted_message, key)
-            app.logger.debug(f"Decrypted message: {decrypted_message}")
+            app.logger.debug(f"Decrypted message from Waldo: {decrypted_message}")
             print("done")  # Print "done" to console
         except Exception as e:
             error = str(e)
