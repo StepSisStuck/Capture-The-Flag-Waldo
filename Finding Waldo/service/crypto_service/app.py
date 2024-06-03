@@ -5,35 +5,27 @@ import logging
 
 app = Flask(__name__)
 
-# Configure logging
+# Setup logging
 logging.basicConfig(level=logging.DEBUG)
 
 def unpad(s):
-    logging.debug(f"Unpadding input: {s}")
-    result = s[:-ord(s[len(s) - 1:])]
-    logging.debug(f"Unpadded result: {result}")
-    return result
+    padding_len = s[-1]
+    app.logger.debug(f"Padding length: {padding_len}")
+    if padding_len < 1 or padding_len > 16:
+        raise ValueError("Invalid padding length")
+    return s[:-padding_len]
 
 def decrypt(ciphertext, key):
-    logging.debug(f"Starting decryption with key: {key}")
     key = key.encode('utf-8')
     if len(key) not in [16, 24, 32]:
-        raise ValueError("Invalid AES key length (must be 16, 24, or 32 bytes)")
-    logging.debug(f"Key length is valid: {len(key)} bytes")
-    try:
-        ciphertext = base64.b64decode(ciphertext)
-        logging.debug(f"Base64 decoded ciphertext: {ciphertext}")
-    except Exception as e:
-        logging.error(f"Error decoding base64 ciphertext: {e}")
-        raise ValueError("Invalid base64 ciphertext")
-    try:
-        cipher = AES.new(key, AES.MODE_ECB)
-        decrypted = unpad(cipher.decrypt(ciphertext)).decode('utf-8')
-        logging.debug(f"Decryption successful: {decrypted}")
-        return decrypted
-    except Exception as e:
-        logging.error(f"Error during decryption: {e}")
-        raise ValueError("Decryption failed")
+        raise ValueError("Invalid AES key length")
+    ciphertext = base64.b64decode(ciphertext)
+    cipher = AES.new(key, AES.MODE_ECB)
+    decrypted = cipher.decrypt(ciphertext)
+    app.logger.debug(f"Decrypted bytes before unpadding: {decrypted}")
+    unpadded = unpad(decrypted)
+    app.logger.debug(f"Unpadded bytes: {unpadded}")
+    return unpadded.decode('utf-8')
 
 @app.route('/')
 def home():
@@ -42,27 +34,32 @@ def home():
 @app.route('/message')
 def message():
     return jsonify({
-        "encrypted_message": "G30tMv+ThtFNhuitft+HAt2IWJ/F+c/9BjyR72tfA8Xkhc+PLny6V7hEy30KYBLnXc/kG30fm/eAWrAGpDB7fQ=="
+        "encrypted_message": "G30tMv+ThtFNhuitft+HAuS8kJaZTs3brXfv6a6dQY063vnONWRR6w59W7TjP9Ua"
     })
 
 @app.route('/decrypt', methods=['GET', 'POST'])
 def decrypt_page():
-    decrypted_message = None
-    error = None
-
+    encrypted_message = ''
+    key = ''
+    decrypted_message = ''
+    error = ''
+    
     if request.method == 'POST':
         encrypted_message = request.form['encrypted_message']
         key = request.form['key']
-        logging.debug(f"Received encrypted message: {encrypted_message} and key: {key}")
+        app.logger.debug(f"Received encrypted_message: {encrypted_message}")
+        app.logger.debug(f"Received key: {key}")
         try:
+            if len(key) not in [16, 24, 32]:
+                raise ValueError("Invalid AES key length (must be 16, 24, or 32 bytes)")
             decrypted_message = decrypt(encrypted_message, key)
-            logging.debug(f"Decrypted message: {decrypted_message}")
+            app.logger.debug(f"Decrypted message: {decrypted_message}")
+            print("done")  # Print "done" to console
         except Exception as e:
-            logging.error(f"Error during decryption: {e}")
             error = str(e)
+            app.logger.error(f"Error during decryption: {error}")
     
-    logging.debug(f"Decrypted message: {decrypted_message}, Error: {error}")
-    return render_template_string(DECRYPT_TEMPLATE, decrypted_message=decrypted_message, error=error)
+    return render_template_string(DECRYPT_TEMPLATE, decrypted_message=decrypted_message, error=error, encrypted_message=encrypted_message, key=key)
 
 DECRYPT_TEMPLATE = '''
 <!doctype html>
@@ -78,11 +75,11 @@ DECRYPT_TEMPLATE = '''
       <form method="post">
         <div>
           <label for="encrypted_message">Encrypted Message</label>
-          <input type="text" id="encrypted_message" name="encrypted_message" required>
+          <input type="text" id="encrypted_message" name="encrypted_message" required value="{{ encrypted_message }}">
         </div>
         <div>
           <label for="key">Decryption Key</label>
-          <input type="text" id="key" name="key" required>
+          <input type="text" id="key" name="key" required value="{{ key }}">
         </div>
         <button type="submit">Decrypt</button>
       </form>
