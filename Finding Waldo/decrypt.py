@@ -24,6 +24,6 @@ if not ciphertext:
     print("Invalid input. Please provide a valid encrypted message.")
     sys.exit(1)
 
-key = "thisisaverysecret"  # 16 characters
+key = "thisisaveryshhhh"  # 16 characters
 plaintext = decrypt(ciphertext, key)
 print("Decrypted message:", plaintext)

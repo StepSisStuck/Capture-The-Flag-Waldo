@@ -29,12 +29,13 @@ def decrypt(ciphertext, key):
 
 @app.route('/')
 def home():
-    return "Welcome to Finding Waldo Crypto Challenge!"
+    return "Welcome to Finding Waldo Crypto Challenge!\n He has hidden a secret message and key for you to decrypt. Good luck!"
+    
 
 @app.route('/message')
 def message():
     return jsonify({
-        "encrypted_message": "G30tMv+ThtFNhuitft+HAuS8kJaZTs3brXfv6a6dQY063vnONWRR6w59W7TjP9Ua"
+         "encrypted_message": "You found Waldo's secret message, G30tMv+ThtFNhuitft+HAj2FRg1sqtz7QtcaBzQNUHryhC2UCsFKE2LYfNpD8yiL"
     })
 
 
@@ -44,11 +45,11 @@ def index():
   if admin_cookie == 'true':
     return 'thisisaveryshhhh'
   elif admin_cookie is None:
-    resp = make_response("Sorry, only users with WaldoesCookie cookie can access this page.")
+    resp = make_response("Sorry, but Waldo wants cookies in exchange for his key.")
     resp.set_cookie('WaldoesCookie', 'false')
     return resp
   else:
-    return 'Sorry, only users with WaldoesCookie can access this page.'
+    return 'Sorry, but Waldo wants cookies in exchange for his key.'
 
 @app.route('/decrypt', methods=['GET', 'POST'])
 def decrypt_page():

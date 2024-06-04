@@ -3,7 +3,6 @@
 - [Overview](#overview)
   - [Page overview](#page-overview)
   - [Steps to Solve the Challenge](#steps-to-solve-the-challenge)
-      - [Encryption and Decryption Details](#encryption-and-decryption-details)
     - [Example](#example)
       - [Form Submission](#form-submission)
 
@@ -37,6 +36,7 @@ There are four pages in the challenge:
 - Change the cookie value to true and refresh the page.
 - The decryption key will be displayed on the page.
 
+
 3. **Navigate to the Decryption Page**
    - Open your web browser and go to `http://localhost:5000/decrypt`.
 
@@ -44,18 +44,10 @@ There are four pages in the challenge:
    - Click the "Decrypt" button to submit the form.
    - The decrypted message will be displayed if the decryption is successful.
 
-#### Encryption and Decryption Details
-
-- **Encryption**: The message is encrypted using AES in ECB mode with PKCS7 padding.
-- **Decryption**:
-  1. The encrypted message is base64-decoded.
-  2. AES decryption is performed using the provided key.
-  3. The decrypted message is unpadded using the PKCS7 padding scheme.
-  4. The original plaintext message is displayed.
 
 ### Example
 
-- **Encrypted Message**: `G30tMv+ThtFNhuitft+HAuS8kJaZTs3brXfv6a6dQY063vnONWRR6w59W7TjP9Ua`
+- **Encrypted Message**: `G30tMv+ThtFNhuitft+HAj2FRg1sqtz7QtcaBzQNUHryhC2UCsFKE2LYfNpD8yiL`
 - **Decryption Key**: `thisisaveryshhhh`
 
 #### Form Submission
@@ -63,5 +55,5 @@ There are four pages in the challenge:
 After submitting the form with the correct details, the decrypted message will be displayed as:
 
 ```
-Decrypted Message: Waldo's location is 42.3601,-71.0589
+Decrypted Message: Waldo's location is CTF{42.3601,-71.0589}
 ```
