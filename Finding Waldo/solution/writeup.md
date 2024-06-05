@@ -21,7 +21,7 @@ There are four pages in the challenge:
 ## Steps to Solve the Challenge
 
 1. **Retrieve the Encrypted Message**
-   - Visit `http://localhost:5000/message` to get the encrypted message in JSON format.
+   - Visit `http://localhost:8000/message` to get the encrypted message in JSON format.
    - Example response:
      ```json
      {
@@ -32,13 +32,13 @@ There are four pages in the challenge:
 
 
 2. **Decrypt the Message**
-- Open your web browser and go to `http://localhost:5000/key`.
+- Open your web browser and go to `http://localhost:8000/key`.
 - Change the cookie value to true and refresh the page.
 - The decryption key will be displayed on the page.
 
 
 3. **Navigate to the Decryption Page**
-   - Open your web browser and go to `http://localhost:5000/decrypt`.
+   - Open your web browser and go to `http://localhost:8000/decrypt`.
 
 4. **Submit the Form**
    - Click the "Decrypt" button to submit the form.
