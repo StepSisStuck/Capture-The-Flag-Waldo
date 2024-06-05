@@ -20,4 +20,5 @@ cd '.\Finding Waldo\service\'
 docker-compose up --build
 ```
 
-
+### Starting the challenge
+- The challenge is available at `localhost:8000`
