@@ -5,7 +5,7 @@ Welcome to the Finding Waldo challenge! Your task is to decrypt an encrypted mes
 ## Hints
 1. The encryption algorithm used is AES.
 2. The key used for encryption is 16 characters long and is a common phrase.
-3. localhost:5000 is the server that has the encrypted message and the key with decryption capabilities.
+3. localhost:8000 is the server that has the encrypted message and the key with decryption capabilities.
 
 
 ## Pre-requisites
@@ -13,7 +13,7 @@ Welcome to the Finding Waldo challenge! Your task is to decrypt an encrypted mes
 ## Deployment
 To run the challenge, use the following commands:
 ```bash
-cd service
+cd '.\Finding Waldo\service\'  
 ```
 
 ```bash

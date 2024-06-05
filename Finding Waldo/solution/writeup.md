@@ -5,6 +5,7 @@
   - [Steps to Solve the Challenge](#steps-to-solve-the-challenge)
     - [Example](#example)
       - [Form Submission](#form-submission)
+      - [Flag answer](#flag-answer)
 
 
 # Overview
@@ -21,7 +22,7 @@ There are four pages in the challenge:
 ## Steps to Solve the Challenge
 
 1. **Retrieve the Encrypted Message**
-   - Visit `http://localhost:5000/message` to get the encrypted message in JSON format.
+   - Visit `http://localhost:8000/message` to get the encrypted message in JSON format.
    - Example response:
      ```json
      {
@@ -32,13 +33,13 @@ There are four pages in the challenge:
 
 
 2. **Decrypt the Message**
-- Open your web browser and go to `http://localhost:5000/key`.
+- Open your web browser and go to `http://localhost:8000/key`.
 - Change the cookie value to true and refresh the page.
 - The decryption key will be displayed on the page.
 
 
 3. **Navigate to the Decryption Page**
-   - Open your web browser and go to `http://localhost:5000/decrypt`.
+   - Open your web browser and go to `http://localhost:8000/decrypt`.
 
 4. **Submit the Form**
    - Click the "Decrypt" button to submit the form.
@@ -57,3 +58,6 @@ After submitting the form with the correct details, the decrypted message will b
 ```
 Decrypted Message: Waldo's location is CTF{42.3601,-71.0589}
 ```
+
+#### Flag answer
+- Flag is `CTF{42.3601,-71.0589}`
