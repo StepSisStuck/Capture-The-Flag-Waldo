@@ -5,6 +5,7 @@
   - [Steps to Solve the Challenge](#steps-to-solve-the-challenge)
     - [Example](#example)
       - [Form Submission](#form-submission)
+      - [Flag answer](#flag-answer)
 
 
 # Overview
@@ -57,3 +58,6 @@ After submitting the form with the correct details, the decrypted message will b
 ```
 Decrypted Message: Waldo's location is CTF{42.3601,-71.0589}
 ```
+
+#### Flag answer
+- Flag is `CTF{42.3601,-71.0589}`
