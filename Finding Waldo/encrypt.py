@@ -16,6 +16,6 @@ def encrypt(plaintext, key):
     return base64.b64encode(encrypted).decode('utf-8')
 
 key = "thisisaveryshhhh"  # 16 characters
-plaintext = "CTF{42.3601,-71.0589}"
+plaintext = "Waldo's location is CTF{42.3601,-71.0589}"
 encrypted_message = encrypt(plaintext, key)
 print(f"Encrypted message: {encrypted_message}")
