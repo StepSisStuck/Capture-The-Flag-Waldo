@@ -49,7 +49,7 @@ def index():
     resp.set_cookie('WaldoesCookie', 'false')
     return resp
   else:
-    return 'Sorry, but Waldo wants cookies in exchange for his key.'
+    return 'Sorry, but Waldo wants cookies in exchange for his key'
 
 @app.route('/decrypt', methods=['GET', 'POST'])
 def decrypt_page():
