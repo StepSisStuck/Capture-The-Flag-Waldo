@@ -35,7 +35,7 @@ def home():
 @app.route('/message')
 def message():
     return jsonify({
-         "encrypted_message": "You found Waldo's secret message, G30tMv+ThtFNhuitft+HAj2FRg1sqtz7QtcaBzQNUHryhC2UCsFKE2LYfNpD8yiL"
+         "You found Waldo's encrypted message": "G30tMv+ThtFNhuitft+HAj2FRg1sqtz7QtcaBzQNUHryhC2UCsFKE2LYfNpD8yiL"
     })
 
 
