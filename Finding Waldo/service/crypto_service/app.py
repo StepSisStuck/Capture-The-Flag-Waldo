@@ -41,10 +41,10 @@ def message():
 
 @app.route('/key')
 def index():
-  admin_cookie = request.cookies.get('WaldoesCookie')
-  if admin_cookie == 'true':
+  cookie = request.cookies.get('WaldoesCookie')
+  if cookie == 'true':
     return 'thisisaveryshhhh'
-  elif admin_cookie is None:
+  elif cookie is None:
     resp = make_response("Sorry, but Waldo wants cookies in exchange for his key.")
     resp.set_cookie('WaldoesCookie', 'false')
     return resp
