@@ -15,4 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag v1:$(date +%s)
+      run: docker build ./crypto_service --file ./crypto_service/Dockerfile --tag v1:$(date +%s)
+
