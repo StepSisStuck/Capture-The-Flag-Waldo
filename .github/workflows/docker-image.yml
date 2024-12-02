@@ -7,13 +7,16 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    # Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Build the Docker image
     - name: Build the Docker image
       run: docker build ./crypto_service --file ./crypto_service/Dockerfile --tag v1:$(date +%s)
-
