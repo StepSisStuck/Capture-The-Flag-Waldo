@@ -19,4 +19,4 @@ jobs:
 
     # Build the Docker image
     - name: Build the Docker image
-      run: docker build ./crypto_service --file ./crypto_service/Dockerfile --tag v1:$(date +%s)
+      run: docker build ./crypto_service --file ./service/crypto_service/Dockerfile --tag v1:$(date +%s)
