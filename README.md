@@ -22,3 +22,13 @@ docker-compose up --build
 
 ### Starting the challenge
 - The challenge is available at `localhost:8000`
+
+# Using Docker Package
+Feel free to use the command line install, it will make your life more easier!
+https://github.com/StepSisStuck/Capture-The-Flag-Waldo/pkgs/container/capture-the-flag-waldo
+
+
+
+
+
+
